@@ -19,6 +19,122 @@ client.on('message', message => { // RadThiek
   }
 });
 
+const shorten = require('isgd');
+client.on('message', message => {
+
+if (message.content.startsWith(prefix + 'short')) {
+	let args = message.content.split(" ").slice(1);
+if (!args[0]) return message.channel.send('**Usage**: '+ prefix +'short <رابط>')
+if (!args[1]) { 
+	shorten.shorten(args[0], function(res) {
+		if (res.startsWith('Error:')) return message.channel.send('**Usage**: '+ prefix +'short <link>');
+		message.channel.send(`اختصار الرابط:**<${res}>**`); 
+	})
+} else { 
+	shorten.custom(args[0], args[1], function(res) { 
+		if (res.startsWith('Error:')) return message.channel.send(`اختصار الرابط:**${res}**`); 
+		message.channel.send(`اختصار الرابط:**<${res}>**`); 
+})}}});
+
+
+client.on("ready", () => {
+	var guild;
+	while (!guild)
+			guild = client.guilds.find("name", "WordShop")
+	guild.fetchInvites().then((data) => {
+			data.forEach((Invite, key, map) => {
+					var Inv = Invite.code;
+					dat[Inv] = Invite.uses;
+			})
+	})
+})
+client.on("guildMemberAdd", (member) => {
+	let channel = member.guild.channels.find('name', 'word');
+	if (!channel) {
+			console.log("!channel fails");
+			return;
+	}
+	if (member.id == client.user.id) {
+			return;
+	}
+	console.log('made it till here!');
+	var guild;
+	while (!guild)
+			guild = client.guilds.find("name", "WordShop")
+	guild.fetchInvites().then((data) => {
+			data.forEach((Invite, key, map) => {
+					var Inv = Invite.code;
+					if (dat[Inv])
+							if (dat[Inv] < Invite.uses) {
+									console.log(3);
+									console.log(`${member} joined over ${Invite.inviter}'s invite ${Invite.code}`)
+channel.send(`invited by : ${Invite.inviter}  `)            
+}
+					dat[Inv] = Invite.uses;
+			})
+	})
+});
+
+
+client.on("message", message => {
+ if (message.content === "whelp") {
+  const embed = new Discord.RichEmbed()  
+      .setColor("#000000") 
+      .setDescription(`
+      
+                    WordShop Commands
+Please Choose:
+             
+${prefix}server ⇏ لمعرفة معلومات السيرفر
+${prefix}server-roles ⇏ لعرض كل رتب السيرفر
+${prefix}id ⇏ لمعرفة ايدي حقك
+${prefix}invites ⇏ check your invites
+${prefix}user ⇏ informations about you account
+`)
+   message.channel.sendEmbed(embed)
+    
+   }
+   }); 
+
+
+client.on('message', message => {
+    if (message.content === 'wserver-roles') {
+        var roles = message.guild.roles.map(roles => `${roles.name}, `).join(' ')
+        const embed = new Discord.RichEmbed()
+        .setColor('RANDOM')
+        .addField('الرتب:',`**[${roles}]**`)
+        message.channel.sendEmbed(embed);
+    }
+});
+
+
+
+client.on('message', message => {
+	if (message.content.startsWith("رابط")) {
+		if (message.author.bot) return
+		message.channel.createInvite({
+		thing: true,
+		maxUses: 5,
+		maxAge: 1,
+	}).then(invite =>
+		message.author.sendMessage(invite.url)
+	)
+	const embed = new Discord.RichEmbed()
+		.setColor("RANDOM")
+			.setDescription(" تم ارسال الرابط في الخاص :link: ")
+			 .setAuthor(client.user.username, client.user.avatarURL)
+				 .setAuthor(client.user.username, client.user.avatarURL)
+				.setFooter('طلب بواسطة: ' + message.author.tag)
+ 
+		message.channel.sendEmbed(embed).then(message => {message.delete(10000)})
+				const Embed11 = new Discord.RichEmbed()
+		.setColor("RANDOM")
+ 
+	.setDescription(" مدة الرابط :  24 ساعه فقط  عدد استخدامات الرابط : 5 ")
+		message.author.sendEmbed(Embed11)
+	}
+});
+
    client.on("message", msg => {
   if(msg.content.startsWith (prefix + "id")) {
     if(!msg.channel.guild) return msg.reply('**:x: اسف لكن هذا الامر للسيرفرات فقط **');         
@@ -101,7 +217,7 @@ message.channel.send(`This avatar For ${user} link : ${user.avatarURL}`);
 });
 
 client.on('message', function(msg) {
-if(msg.content.startsWith ('.server')) {
+if(msg.content.startsWith ('wserver')) {
 	if(!msg.channel.guild) return msg.reply('**:x: Error**');         
 	let embed = new Discord.RichEmbed()
 	.setColor('RANDOM')
