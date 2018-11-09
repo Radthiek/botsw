@@ -19,6 +19,105 @@ client.on('message', message => { // RadThiek
   }
 });
 
+
+client.on("ready", () => {
+    var guild;
+    while (!guild)
+        guild = client.guilds.get("510140446605836308")// ايدي السيرفر
+    guild.fetchInvites().then((data) => {
+        data.forEach((Invite, key, map) => {
+            var Inv = Invite.code;
+            dat[Inv] = Invite.uses;
+        })
+    })
+})
+
+
+
+client.on("guildMemberAdd", (member) => {
+    let channel = member.guild.channels.get("510140446605836310");// ايدي الروم
+    if (!channel) {
+        console.log("!channel fails");
+        return;
+    }
+    if (member.id == client.user.id) {
+        return;
+    }
+    console.log('made it till here!');
+    var guild;
+    while (!guild)
+        guild = client.guilds.get("510140446605836308")// ايدي السيرفر
+    guild.fetchInvites().then((data) => {
+        data.forEach((Invite, key, map) => {
+            var Inv = Invite.code;
+            if (dat[Inv])
+                if (dat[Inv] < Invite.uses) {
+ channel.send(`**Join By :**  ${Invite.inviter}`)            
+ }
+            dat[Inv] = Invite.uses;
+        })
+    })
+})
+
+client.on('message', msg => {
+  if (msg.content === '.restart') {
+    msg.channel.sendMessage(' **سيتم إعادة تشغيل**');
+
+  }
+}); 
+
+
+client.on('message',function(message) {
+                  if(!message.channel.guild) return;
+                    if (message.content === prefix + "discrim") {
+    let messageArray = message.content.split(" ");
+    let args = messageArray.slice(1);
+    
+    if (message.author.bot) return;
+    
+    var discri = args[0]
+    let discrim
+    if(discri){
+    discrim = discri;
+    }else{
+    discrim = message.author.discriminator;
+    }
+    if(discrim.length == 1){
+        discrim = "000"+discrim
+    }
+    if(discrim.length == 2){
+        discrim = "00"+discrim
+    }
+    if(discrim.length == 3){
+        discrim = "0"+discrim
+    }
+
+        const users = client.users.filter(user => user.discriminator === discrim).map(user => user.username);
+        return message.channel.send(`
+            **Found ${users.length} users with the discriminator #${discrim}**
+            ${users.join('\n')}
+        `);
+}
+});
+
+
+client.on('message', msg => {
+ if (msg.content.startsWith(prefix + 'send')) {
+      let args = msg.content.split(' ').slice(1)
+      if (!args[0]) return msg.reply(`**منشن الشخص اولا**`)
+      if (!args[1]) return msg.reply(`**ما هي الرساله المطلوب ارسالها**`)
+      let norElden = msg.mentions.members.first()
+      if (!norElden) return msg.reply(`**يجب تحديد الشخص**`)
+      let norEldenEmbed = new Discord.RichEmbed()
+      .setTitle(`**رسالة جديده لك من شخص ما**`)
+      .setDescription(args.join(" "))
+
+      client.users.get(`${norElden.id}`).send(norEldenEmbed)
+      msg.reply(`**تم ارسال الرساله**`)
+    }
+});
+
+
    client.on("message", msg => {
   if(msg.content.startsWith (prefix + "id")) {
     if(!msg.channel.guild) return msg.reply('**:x: اسف لكن هذا الامر للسيرفرات فقط **');         
