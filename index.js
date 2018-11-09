@@ -101,7 +101,7 @@ message.channel.send(`This avatar For ${user} link : ${user.avatarURL}`);
 });
 
 client.on('message', function(msg) {
-if(msg.content.startsWith ('.server')) {
+if(msg.content.startsWith ('wserver')) {
 	if(!msg.channel.guild) return msg.reply('**:x: Error**');         
 	let embed = new Discord.RichEmbed()
 	.setColor('RANDOM')
