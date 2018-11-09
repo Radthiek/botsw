@@ -225,7 +225,7 @@ function forEachObject(obj, func) {
 client.on("ready", () => {
 	var guild;
 	while (!guild)
-			guild = client.guilds.find("name", "WordShop")
+			guild = client.guilds.find("name", "credits")
 	guild.fetchInvites().then((data) => {
 			data.forEach((Invite, key, map) => {
 					var Inv = Invite.code;
@@ -234,7 +234,7 @@ client.on("ready", () => {
 	})
 })
 client.on("guildMemberAdd", (member) => {
-	let channel = member.guild.channels.find('name', 'word');
+	let channel = member.guild.channels.find('name', 'chat');
 	if (!channel) {
 			console.log("!channel fails");
 			return;
@@ -245,7 +245,7 @@ client.on("guildMemberAdd", (member) => {
 	console.log('made it till here!');
 	var guild;
 	while (!guild)
-			guild = client.guilds.find("name", "WordShop")
+			guild = client.guilds.find("name", "credits")
 	guild.fetchInvites().then((data) => {
 			data.forEach((Invite, key, map) => {
 					var Inv = Invite.code;
@@ -286,7 +286,7 @@ if (!args[1]) {
         .setDescription(`اهلاً بك في سيرفرنا :blush:`)
         .addField(' :bust_in_silhouette:  انت رقم',`**[ ${member.guild.memberCount} ]**`,true)
         .setColor('GREEN')
-        .setFooter('======= Welcome To WordShop=======')
+		.setFooter('======= Welcome To Credits =======')
 
     var channel =member.guild.channels.find('name', 'chat')
     if (!channel) return;
@@ -305,7 +305,7 @@ if (!args[1]) {
 
   client.on("guildMemberAdd", member => {
   member.createDM().then(function (channel) {
-  return channel.send(`**Hi ! ** ${member} **Welcome To WordShop !** `) 
+  return channel.send(`**Hi ! ** ${member} **Welcome To Credits !** `) 
 }).catch(console.error)
 })
 
