@@ -23,7 +23,7 @@ client.on('message', message => { // RadThiek
 client.on("ready", () => {
     var guild;
     while (!guild)
-        guild = client.guilds.get("510140446605836308")// ايدي السيرفر
+        guild = client.guilds.get("510087212726091776")// ايدي السيرفر
     guild.fetchInvites().then((data) => {
         data.forEach((Invite, key, map) => {
             var Inv = Invite.code;
@@ -35,7 +35,7 @@ client.on("ready", () => {
 
 
 client.on("guildMemberAdd", (member) => {
-    let channel = member.guild.channels.get("510140446605836310");// ايدي الروم
+    let channel = member.guild.channels.get("510088193584922638");// ايدي الروم
     if (!channel) {
         console.log("!channel fails");
         return;
@@ -46,7 +46,7 @@ client.on("guildMemberAdd", (member) => {
     console.log('made it till here!');
     var guild;
     while (!guild)
-        guild = client.guilds.get("510140446605836308")// ايدي السيرفر
+        guild = client.guilds.get("510087212726091776")// ايدي السيرفر
     guild.fetchInvites().then((data) => {
         data.forEach((Invite, key, map) => {
             var Inv = Invite.code;
@@ -288,7 +288,7 @@ if (!args[1]) {
         .setColor('GREEN')
         .setFooter('======= Welcome To WordShop=======')
 
-    var channel =member.guild.channels.find('name', 'word')
+    var channel =member.guild.channels.find('name', 'chat')
     if (!channel) return;
     channel.send({embed : embed});
     });
