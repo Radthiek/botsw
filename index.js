@@ -216,7 +216,7 @@ function forEachObject(obj, func) {
 client.on("ready", () => {
 	var guild;
 	while (!guild)
-			guild = client.guilds.find("name", "credits")
+			guild = client.guilds.find("name", "WordShop")
 	guild.fetchInvites().then((data) => {
 			data.forEach((Invite, key, map) => {
 					var Inv = Invite.code;
@@ -225,7 +225,7 @@ client.on("ready", () => {
 	})
 })
 client.on("guildMemberAdd", (member) => {
-	let channel = member.guild.channels.find('name', 'chat');
+	let channel = member.guild.channels.find('name', 'word');
 	if (!channel) {
 			console.log("!channel fails");
 			return;
@@ -236,7 +236,7 @@ client.on("guildMemberAdd", (member) => {
 	console.log('made it till here!');
 	var guild;
 	while (!guild)
-			guild = client.guilds.find("name", "credits")
+			guild = client.guilds.find("name", "WordShop")
 	guild.fetchInvites().then((data) => {
 			data.forEach((Invite, key, map) => {
 					var Inv = Invite.code;
@@ -279,7 +279,7 @@ if (!args[1]) {
         .setColor('GREEN')
 		.setFooter('======= Welcome To Credits =======')
 
-    var channel =member.guild.channels.find('name', 'chat')
+    var channel =member.guild.channels.find('name', 'word')
     if (!channel) return;
     channel.send({embed : embed});
     });
@@ -296,9 +296,9 @@ if (!args[1]) {
 
   client.on("guildMemberAdd", member => {
   member.createDM().then(function (channel) {
-  return channel.send(`**Hi ! ** ${member} **Welcome To Credits !** `) 
+  return channel.send(`**Hi ! ** ${member} **Welcome To WordShop !** `) 
 }).catch(console.error)
 })
 
 
-client.login('NTEwMTUwMzY1NzI3OTQ4ODAx.DsYKTw.cZWj4crRRXDbLOvo4ViKG8AKmhI');
+client.login('NTA1NDQ0NzgxMzM0MjAwMzIx.DtAiWA.WeHLkm-7g8B-bDhRQ0yE2pmP-VE');
