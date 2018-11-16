@@ -277,7 +277,7 @@ if (!args[1]) {
         .setDescription(`اهلاً بك في سيرفرنا :blush:`)
         .addField(' :bust_in_silhouette:  انت رقم',`**[ ${member.guild.memberCount} ]**`,true)
         .setColor('GREEN')
-		.setFooter('======= Welcome To Credits =======')
+		.setFooter('======= Welcome To WordShop =======')
 
     var channel =member.guild.channels.find('name', 'word')
     if (!channel) return;
