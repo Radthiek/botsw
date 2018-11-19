@@ -1,12 +1,5 @@
 const Discord = require('discord.js');
-const client = new Discord.Client({disableEveryone: true});
-const fs = require("fs");
-const userData = JSON.parse(fs.readFileSync('./userData.json', 'utf8'));
-var Canvas = require('canvas')
-var jimp = require('jimp')
-const moment = require('moment');
-const pretty = require('pretty-ms');
-const rn = require('random-number');
+const client = new Discord.Client();
 const prefix = 'w'
 
 client.on('message', message => {
