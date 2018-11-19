@@ -7,6 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
+   "canvas": "^1.6.13",
+   "colors": "^1.1.2",
   "license": "ISC",
   "dependencies": {
     "args": "^5.0.0",
