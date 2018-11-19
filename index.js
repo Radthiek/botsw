@@ -2,6 +2,95 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const prefix = 'w'
 
+client.on('message', message => {
+if (message.author.bot) return null;
+let sender = message.author;
+let msg = message.content.toUpperCase();
+if (!userData[sender.id]) userData[sender.id] = {}
+if (!userData[sender.id].money) userData[sender.id].money = 200;
+if (!userData[sender.id].lastDaily) userData[sender.id].lastDaily = 'Not Collected';
+if (!userData[sender.id].messages) userData[sender.id].messages = 1;
+if (!userData[sender.id].level) userData[sender.id].level = 1;
+if (!userData[sender.id].like) userData[sender.id].like = 1;
+if (!userData[sender.id].text) userData[sender.id].text = `${prefix}setinfo to set.`
+
+if(message.content.startsWith(prefix + 'credit')) {
+ var mentionned = message.mentions.users.first();
+if (!userData[sender.id]) userData[sender.id] = {}
+if (!userData[sender.id].money) userData[sender.id].money = 0;
+fs.writeFile('./userData.json', JSON.stringify(userData), (err) => {
+if (err) console.error(err);
+})
+        
+    var x5bzm;
+      if(mentionned){
+          var x5bzm = mentionned;
+      } else {
+          var x5bzm = message.author;
+          
+      }
+
+      var mando = message.mentions.users.id;
+      if  (!userData[x5bzm.id]) userData[x5bzm.id] = {}
+      if (!userData[x5bzm.id].money) userData[x5bzm.id].money = 0;
+      message.channel.send("**:credit_card:  | **" + '`' + x5bzm.username + '`' + "** , your credit is :yen: **" + '`' + userData[x5bzm.id].money + '`' + "** credits!**")
+}
+
+
+let cont = message.content.slice(prefix.length).split(" ");
+let args = cont.slice(1);
+if(message.content.startsWith(prefix + 'transfer')) {
+          if (!args[0]) {
+            message.channel.send(`**Ø§Ø°Ø§ ÙƒÙ†Øª ØªØ±ÙŠØ¯ Ø§Ù† ØªØ­ÙˆÙ„ Ø§Ù„Ù‰ Ø´Ø®Øµ Ø¹Ù† Ø·Ø±ÙŠÙ‚ Ø§Ù„Ø§Ù…Ø± Ø§Ù„ØªØ§Ù„ÙŠ: ${prefix}credits <Ø§Ù„Ø´Ø®Øµ> <Ø§Ù„Ù…Ø¨Ù„Øº>**`);
+         return;
+           }
+        // We should also make sure that args[0] is a number
+        if (isNaN(args[0])) {
+            message.channel.send(`**ÙŠØ¬Ø¨ Ø§Ù† ØªÙƒØªØ¨ Ø§Ù„Ù…Ø¨Ù„Øº : ${prefix}credits <Ø§Ù„Ø´Ø®Øµ> <Ø§Ù„Ù…Ø¨Ù„Øº>**`);
+            return; // Remember to return if you are sending an error message! So the rest of the code doesn't run.
+             }
+            let defineduser = '';
+            let firstMentioned = message.mentions.users.first();
+            defineduser = (firstMentioned)
+            if (!defineduser) return message.channel.send(`**ÙŠØ¬Ø¨ Ø§Ù† ØªÙƒØªØ¨ Ø§Ù„Ù…Ø¨Ù„Øº : ${prefix}credits <Ø§Ù„Ø´Ø®Øµ> <Ø§Ù„Ù…Ø¨Ù„Øº>**`);
+            var mentionned = message.mentions.users.first();
+if (!userData[sender.id]) userData[sender.id] = {}
+if (!userData[sender.id].money) userData[sender.id].money = 200;
+fs.writeFile('./userData.json', JSON.stringify(userData), (err) => {
+if (err) console.error(err);
+})
+      var mando = message.mentions.users.id;
+      if  (!userData[defineduser.id]) userData[defineduser.id] = {}
+      if (!userData[defineduser.id].money) userData[defineduser.id].money = 200;
+      userData[defineduser.id].money += (+args[0]);
+      userData[sender.id].money += (-args[0]);
+      let mariam = message.author.username
+message.channel.send('`' + mentionned.username + '`' + '** Ø§Ù„Ù‰  **'+ '`' + mariam + '`' + '**  ØªÙ… ØªØ­ÙˆÙŠÙ„ Ø§Ù„Ù…Ø¨Ù„Øº**'+ (args[0]) + '** :dollar: Ù…Ù† **')
+}
+
+if(message.content.startsWith(prefix + 'daily')) {
+if (userData[sender.id].lastDaily != moment().format('6800000')) {
+    userData[sender.id].lastDaily = moment().format('6800000')
+    userData[sender.id].money += 200; 
+    message.channel.send(`**${message.author.username} you collect your \`200\` :dollar: daily pounds**`)
+} else {
+    message.channel.send('**your next Daily :moneybag: : ' + moment().endOf('6800000').fromNow()  + '.**')
+}
+}
+fs.writeFile('./userData.json', JSON.stringify(userData), (err) => {
+if (err) console.error(err);
+})
+
+if(message.content.startsWith(prefix + 'setinfo')) {
+if (!userData[message.author.id].text) userData[message.author.id].text = 'معلومات عني:';
+var mard = userData[message.author.id].text
+let args = message.content.split(' ').slice(1).join(' ');
+if (!args) return message.channel.send('**عليك كتابه المعلومات بعد الامر التي تريد ان تغيره**')
+userData[message.author.id].text = args ;
+message.channel.send(':ballot_box_with_check:**تم تغير معلوماتك بنجاح**')
+}
+}
+)
 
 client.on('message', message => {
 	if (message.content.startsWith("رابط")) {
