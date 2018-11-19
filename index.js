@@ -301,8 +301,6 @@ if (!args[1]) {
         .setTitle(`يا هلا بك :raised_hand::skin-tone-1: :smiley:`)
         .setDescription(`اهلاً بك في سيرفرنا :blush:`)
         .addField(' :bust_in_silhouette:  انت رقم',`**[ ${member.guild.memberCount} ]**`,true)
-	.addField(': دخولك لديسكورد قبل', `${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} **\n** \`${moment(heg.createdTimestamp).fromNow()}\`` ,true) 
-        .addField(': انضمامك لسيرفر قبل', `${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')} \n \`${moment(h.joinedAt).fromNow()}\``, true)               
         .setColor('GREEN')
 	.setFooter('======= Welcome To WordShop =======')
 
