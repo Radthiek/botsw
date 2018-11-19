@@ -29,18 +29,31 @@ client.on('message', message => {
 });
  
  
-client.on('guildMemberAdd', member => {
-    const botCount = member.guild.members.filter(m=>m.user.bot).size
-    const memberCount = [member.guild.memberCount] - [botCount]
-    client.channels.get('514137994257760268').setName(`⟫『 ${memberCount} عدد الاعضاء 』⟪`);
-    client.channels.get('514137950850908164').setName(`⟫『 ${botCount} عدد البوتات 』⟪`);
-});
-
-client.on('guildMemberRemove', member => {
-    const botCount = member.guild.members.filter(m=>m.user.bot).size
-    const memberCount = [member.guild.memberCount] - [botCount]
-    client.channels.get('514137994257760268').setName(`⟫『 ${memberCount} عدد الاعضاء 』⟪`);
-    client.channels.get('514137950850908164').setName(`⟫『 ${botCount} عدد البوتات 』⟪`);
+var ss = 0;
+ 
+client.on('voiceStateUpdate', (o,n) => {// RadThiek
+	if (o.voiceChannel && !n.voiceChannel) {
+		ss-=1
+		n.guild.channels.get("514137950850908164").edit({
+			name : "Word VOICE : " + ss+ ""
+		})
+	};
+	if (n.voiceChannel && !o.voiceChannel) {
+		ss+=1
+		n.guild.channels.get("514137950850908164").edit({
+			name : "Word VOICE : " + ss+ ""
+		})
+	}
+})
+client.on("ready", () => {
+	client.guilds.get("510140446605836308").members.forEach(m => {
+		if (m.voiceChannel) {
+			ss+=1
+		};
+		client.channels.get("514137950850908164").edit({
+			name : "Word VOICE : " + ss+ ""
+		})
+	});
 });
 
 client.on('message', message => { // RadThiek
