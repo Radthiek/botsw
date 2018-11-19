@@ -2,7 +2,6 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const prefix = 'w'
 
-
 client.on('message', message => {
 	if (message.content.startsWith("رابط")) {
 		if (message.author.bot) return
