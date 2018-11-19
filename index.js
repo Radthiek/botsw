@@ -301,11 +301,10 @@ if (!args[1]) {
         .setTitle(`يا هلا بك :raised_hand::skin-tone-1: :smiley:`)
         .setDescription(`اهلاً بك في سيرفرنا :blush:`)
         .addField(' :bust_in_silhouette:  انت رقم',`**[ ${member.guild.memberCount} ]**`,true)
-        .setColor('GREEN')
 	.addField(': دخولك لديسكورد قبل', `${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} **\n** \`${moment(heg.createdTimestamp).fromNow()}\`` ,true) 
         .addField(': انضمامك لسيرفر قبل', `${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')} \n \`${moment(h.joinedAt).fromNow()}\``, true)               
-
-		.setFooter('======= Welcome To WordShop =======')
+        .setColor('GREEN')
+	.setFooter('======= Welcome To WordShop =======')
 
     var channel =member.guild.channels.find('name', 'word')
     if (!channel) return;
