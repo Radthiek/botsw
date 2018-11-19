@@ -29,6 +29,19 @@ client.on('message', message => {
 });
  
  
+client.on('guildMemberAdd', member => {
+    const botCount = member.guild.members.filter(m=>m.user.bot).size
+    const memberCount = [member.guild.memberCount] - [botCount]
+    client.channels.get('514137994257760268').setName(`⟫『 ${memberCount} عدد الاعضاء 』⟪`);
+    client.channels.get('514137950850908164').setName(`⟫『 ${botCount} عدد البوتات 』⟪`);
+});
+
+client.on('guildMemberRemove', member => {
+    const botCount = member.guild.members.filter(m=>m.user.bot).size
+    const memberCount = [member.guild.memberCount] - [botCount]
+    client.channels.get('514137994257760268').setName(`⟫『 ${memberCount} عدد الاعضاء 』⟪`);
+    client.channels.get('514137950850908164').setName(`⟫『 ${botCount} عدد البوتات 』⟪`);
+});
 
 client.on('message', message => { // RadThiek
    if(message.content.startsWith(prefix + "invites")) {
