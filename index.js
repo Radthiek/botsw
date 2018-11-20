@@ -45,17 +45,6 @@ client.channels.find('id', '514412735178604544').setName("༺Welcome To Word༻"
 });
 
 
-client.on('message', message => {
-if (message.content.startsWith(prefix + 'tag')) {
-    let args = message.content.split(" ").slice(1);
-if(!args[0]) return message.reply('Please Type Any Text !');  
-
-    figlet(args.join(" "), (err, data) => {
-              message.channel.send("```" + data + "```")
-           })
-}
-});
-
 client.on('message', message => { // RadThiek
    if(message.content.startsWith(prefix + "invites")) {
     message.guild.fetchInvites().then(invs => {
