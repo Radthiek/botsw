@@ -223,6 +223,39 @@ if(msg.content.startsWith ('wserver')) {
 });
 
 
+
+const shorten = require('isgd');
+client.on('message', message => {
+
+if (message.content.startsWith(prefix + 'short')) {
+	let args = message.content.split(" ").slice(1);
+if (!args[0]) return message.channel.send('**Usage**: '+ prefix +'short <رابط>')
+if (!args[1]) { 
+	shorten.shorten(args[0], function(res) {
+		if (res.startsWith('Error:')) return message.channel.send('**Usage**: '+ prefix +'short <link>');
+		message.channel.send(`اختصار الرابط:**<${res}>**`); 
+	})
+} else { 
+	shorten.custom(args[0], args[1], function(res) { 
+		if (res.startsWith('Error:')) return message.channel.send(`اختصار الرابط:**${res}**`); 
+		message.channel.send(`اختصار الرابط:**<${res}>**`); 
+})}}});
+
+
+      client.on('guildMemberAdd', member => {
+        var embed = new Discord.RichEmbed()
+        .setAuthor(member.user.username, member.user.avatarURL)
+        .setThumbnail(member.user.avatarURL)
+        .setTitle(`يا هلا بك :raised_hand::skin-tone-1: :smiley:`)
+        .setDescription(`اهلاً بك في سيرفرنا :blush:`)
+        .addField(' :bust_in_silhouette:  انت رقم',`**[ ${member.guild.memberCount} ]**`,true)
+        .setColor('GREEN')
+	.setFooter('======= Welcome To WordShop =======')
+
+    var channel =member.guild.channels.find('name', 'word')
+    if (!channel) return;
+    channel.send({embed : embed});
+    });
 var dat = JSON.parse("{}");
 function forEachObject(obj, func) {
 	Object.keys(obj).forEach(function (key) { func(key, obj[key]) })
@@ -265,40 +298,10 @@ channel.send(`invited by : ${Invite.inviter}  `)
 	})
 });
 
-const shorten = require('isgd');
-client.on('message', message => {
-
-if (message.content.startsWith(prefix + 'short')) {
-	let args = message.content.split(" ").slice(1);
-if (!args[0]) return message.channel.send('**Usage**: '+ prefix +'short <رابط>')
-if (!args[1]) { 
-	shorten.shorten(args[0], function(res) {
-		if (res.startsWith('Error:')) return message.channel.send('**Usage**: '+ prefix +'short <link>');
-		message.channel.send(`اختصار الرابط:**<${res}>**`); 
-	})
-} else { 
-	shorten.custom(args[0], args[1], function(res) { 
-		if (res.startsWith('Error:')) return message.channel.send(`اختصار الرابط:**${res}**`); 
-		message.channel.send(`اختصار الرابط:**<${res}>**`); 
-})}}});
 
 
-      client.on('guildMemberAdd', member => {
-        var embed = new Discord.RichEmbed()
-        .setAuthor(member.user.username, member.user.avatarURL)
-        .setThumbnail(member.user.avatarURL)
-        .setTitle(`يا هلا بك :raised_hand::skin-tone-1: :smiley:`)
-        .setDescription(`اهلاً بك في سيرفرنا :blush:`)
-        .addField(' :bust_in_silhouette:  انت رقم',`**[ ${member.guild.memberCount} ]**`,true)
-        .setColor('GREEN')
-	.setFooter('======= Welcome To WordShop =======')
 
-    var channel =member.guild.channels.find('name', 'word')
-    if (!channel) return;
-    channel.send({embed : embed});
-    });
-	
-	
+
 	client.on('message', message => {
     var args = message.content.split(/[ ]+/)
     if(message.content.includes('discord.gg')){
