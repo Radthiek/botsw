@@ -27,22 +27,7 @@ client.on('message', message => {
 		message.author.sendEmbed(Embed11)
 	}
 });
- client.on("ready", async  => {
-setInterval(function(){
-client.channels.find('id', '513382827698683914').setName("「");
-client.channels.find('id', '513382827698683914').setName("「Wel");
-client.channels.find('id', '513382827698683914').setName("「Welco");
-client.channels.find('id', '513382827698683914').setName("「Welcome");
-client.channels.find('id', '513382827698683914').setName("「Welcome To");
-client.channels.find('id', '513382827698683914').setName("「Welcome To W");
-client.channels.find('id', '513382827698683914').setName("「Welcome To Wo");
-client.channels.find('id', '513382827698683914').setName("「Welcome To Wor");
-client.channels.find('id', '513382827698683914').setName("「Welcome To Word");
-client.channels.find('id', '513382827698683914').setName("「Welcome To WordS");
-client.channels.find('id', '513382827698683914').setName("「Welcome To WordSh");
-client.channels.find('id', '513382827698683914').setName("「Welcome To WordShop」");
-  }, 3000);
-});
+
  
 var ss = 0;
  
